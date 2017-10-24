@@ -1,4 +1,4 @@
-def _basename(path):
+def basename(path):
   return [component for component in path.split("/") if component][-1]
 
 def copy(name, srcs, dest=None, dir=None, **kwargs):
@@ -15,7 +15,7 @@ def copy(name, srcs, dest=None, dir=None, **kwargs):
   else:
     if not dir.endswith("/"):
       dir += "/"
-    outs = [dir + _basename(src) for src in srcs]
+    outs = [dir + basename(src) for src in srcs]
   if len(outs) == 1:
     dest_arg = "$@"
   else:
