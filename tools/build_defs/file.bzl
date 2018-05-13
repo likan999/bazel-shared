@@ -1,6 +1,10 @@
 def basename(path):
   return [component for component in path.split("/") if component][-1]
 
+def replace_extension(path, ext):
+  path, _, _ = path.rpartition(".")
+  return path + "." + ext
+
 def copy(name, srcs, dest=None, dir=None, **kwargs):
   if (dest == None) == (dir == None):
     fail("exactly one of dest and dir should be specifified")
