@@ -55,11 +55,17 @@ def windows(value):
 def apple(value):
   return darwin(value) + ios(value) + tvos(value) + watchos(value)
 
+def linux(value):
+  return _group(["k8", "piii"], value)
+
 def x64(value):
   return _group_contains("64", value) + _group(["k8", "s390x"], value)
 
 def x86(value):
   return _group([cpu for cpu in CPUS if cpu not in x64(value)], value)
 
-def linux(value):
-  return _group(["k8", "piii"], value)
+def big_endian(value):
+  return _group(["s390x"], value)
+
+def little_endian(value):
+  return _group([cpu for cpu in CPUS if cpu != "s390x"], value)
